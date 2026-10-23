@@ -1,0 +1,156 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. Parent Entity: Periode Akademik Multi-Year
+model AcademicPeriod {
+  id           Int      @id @default(autoincrement())
+  academicYear String   @unique // Contoh: "2027/2028", "2028/2029"
+  name         String   // Contoh: "Penerimaan Mahasiswa Baru TA 2027/2028"
+  isActive     Boolean  @default(false)
+  startDate    DateTime?
+  endDate      DateTime?
+  notes        String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  tuitionFees     TuitionFee[]
+  admissionTracks AdmissionTrack[]
+
+  @@index([isActive])
+}
+
+// 2. Master Program Perkuliahan (3 Pilar: Reguler, RPL, KIP)
+model LectureProgram {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  description String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  studyPrograms StudyProgram[]
+}
+
+// 3. Fakultas
+model Faculty {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  code        String
+  description String   @db.Text
+  colorTheme  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  studyPrograms StudyProgram[]
+}
+
+// 4. Program Studi
+model StudyProgram {
+  id                 Int      @id @default(autoincrement())
+  slug               String   @unique
+  facultyId          Int
+  name               String
+  degreeLevel        String   // D3, D4, S1, PROFESI, S2
+  degreeTitle        String   // S.Kom, S.Farm, S.Kep, S.Keb, S.T, S.M, S.H, S.Pd, S.Tr.Kes, Ners, Apt, Bdn
+  studyDurationYears Decimal  @db.Decimal(3, 1)
+  accreditation      String   // Unggul, Baik Sekali, Baik, Terakreditasi
+  description        String   @db.Text
+  careerProspects    Json     // Array string prospek karir
+  imageCover         String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  faculty         Faculty          @relation(fields: [facultyId], references: [id], onDelete: Cascade)
+  lecturePrograms LectureProgram[]
+  tuitionFees     TuitionFee[]
+
+  @@index([facultyId])
+}
+
+// 5. Biaya Pendidikan per Trimester
+model TuitionFee {
+  id               Int      @id @default(autoincrement())
+  periodId         Int
+  studyProgramId   Int
+  trackCategory    String   // REGULAR, EMPLOYEE, RPL, PROFESSION_REGULAR, PROFESSION_NON_REGULAR, PROFESSION_ALUMNI, PROFESSION_NON_ALUMNI
+  paymentInterval  String   @default("Trimester / Setiap 3 Bulan Sekali")
+  earlyTrimesterFee Decimal @db.Decimal(12, 2) // Semester 1 - 4
+  lateTrimesterFee  Decimal @db.Decimal(12, 2) // Semester 5 - 8 atau semester profesi
+  notes            String?  @db.Text
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  period       AcademicPeriod @relation(fields: [periodId], references: [id], onDelete: Cascade)
+  studyProgram StudyProgram   @relation(fields: [studyProgramId], references: [id], onDelete: Cascade)
+
+  @@index([periodId])
+  @@index([studyProgramId])
+}
+
+// 6. Jalur Pendaftaran & Biaya Pendaftaran / Diskon Registrasi Ulang
+model AdmissionTrack {
+  id                    Int      @id @default(autoincrement())
+  periodId              Int
+  slug                  String   @unique
+  name                  String
+  category              String   // REGULAR, NON_REGULAR
+  description           String   @db.Text
+  requiresExam          Boolean  @default(true)
+  requiresInterview     Boolean  @default(true)
+  registrationFee       Decimal  @db.Decimal(12, 2) @default(0) // Biaya tes pendaftaran
+  reRegistrationDiscount Decimal @db.Decimal(12, 2) @default(0) // Diskon / potongan biaya registrasi ulang (DPP)
+  requirements          Json     // Array string persyaratan berkas
+  isOpen                Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  period AcademicPeriod @relation(fields: [periodId], references: [id], onDelete: Cascade)
+
+  @@index([periodId])
+}
+
+// 7. Fasilitas Kampus
+model CampusFacility {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String   // LABORATORIUM, AKADEMIK, OLAHRAGA_IBADAH, LAYANAN_MAHASISWA
+  description String   @db.Text
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 8. Beasiswa
+model Scholarship {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique
+  name         String
+  providerType String   // PEMERINTAH_KIP, YAYASAN, MITRA_INDUSTRI, PRESTASI
+  coverage     String   // Bebas Biaya Kuliah Penuh, Potongan DPP 50%, dsb
+  requirements Json     // Array syarat
+  description  String   @db.Text
+  isOpen       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// 9. Admin User
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String   // bcrypt hash
+  role      String   @default("ADMIN") // SUPERADMIN, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

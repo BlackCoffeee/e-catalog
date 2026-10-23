@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Light Mode Tokens (Option A: Academic Navy & Warm Ochre) */
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+
+  --primary: #0F2942;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F2942;
+
+  --accent: #D97706;
+  --accent-foreground: #FFFFFF;
+
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #0F2942;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark Mode Tokens (Transformed: Luminous Sky #38BDF8 & Amber Glow #F59E0B on Navy Obsidian #070C16) */
+  --background: #070C16;
+  --foreground: #F1F5F9;
+
+  --card: #131F33;
+  --card-foreground: #F1F5F9;
+
+  --popover: #131F33;
+  --popover-foreground: #F1F5F9;
+
+  --primary: #38BDF8;
+  --primary-foreground: #070C16;
+
+  --secondary: #1E293B;
+  --secondary-foreground: #F1F5F9;
+
+  --accent: #F59E0B;
+  --accent-foreground: #070C16;
+
+  --muted: #16233B;
+  --muted-foreground: #94A3B8;
+
+  --border: #22324F;
+  --input: #22324F;
+  --ring: #38BDF8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Tabular figures for fee and numeric data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
