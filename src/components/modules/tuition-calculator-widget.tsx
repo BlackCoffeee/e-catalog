@@ -295,17 +295,26 @@ export function TuitionCalculatorWidget() {
             )}
           </div>
 
-          <div className="pt-4 border-t border-[#22324F]">
-            <a
-              href="https://siak.unism.ac.id/pmb"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-md text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-colors"
-            >
-              <span>Daftar Prodi Ini di Portal PMB</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
+        <div className="pt-2 border-t border-[#22324F]">
+          <a
+            href="https://siak.unism.ac.id/pmb"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              import('@/lib/analytics').then(({ trackEvent }) => {
+                trackEvent({
+                  eventType: 'CALCULATOR_SIMULATION',
+                  targetPath: '/biaya-pendidikan',
+                  prodiSlug: selectedProdi.name,
+                });
+              });
+            }}
+            className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-md text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-colors"
+          >
+            <span>Daftar Prodi Ini di Portal PMB</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
         </div>
       </div>
     </div>

@@ -12,8 +12,26 @@ import {
   ArrowUpRight,
   CheckCircle,
 } from 'lucide-react';
+import { AdminAnalyticsCharts } from '@/components/admin/admin-analytics-charts';
 
 export default async function AdminDashboardPage() {
+  // Data analitik terstruktur untuk visualisasi Chart.js
+  const mockTrafficTrends = {
+    labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+    visitors: [142, 198, 230, 310, 280, 420, 390],
+    leads: [18, 24, 35, 42, 38, 59, 52],
+  };
+
+  const mockFacultyDistribution = {
+    labels: ['Kesehatan (FK)', 'Sains & Tek (FST)', 'Humaniora (FH)', 'Kedokteran Hewan (FKHB)'],
+    counts: [45, 28, 18, 9],
+  };
+
+  const mockCtaConversions = {
+    labels: ['Portal SPMB Online', 'Chat WA Admisi 1', 'Chat WA Admisi 2', 'Simulasi Biaya Trimester'],
+    counts: [340, 215, 120, 480],
+  };
+
   return (
     <div className="space-y-6">
       {/* Page Header */}
@@ -108,6 +126,13 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Visual Analytics Charts (Chart.js) */}
+      <AdminAnalyticsCharts
+        trafficTrends={mockTrafficTrends}
+        facultyDistribution={mockFacultyDistribution}
+        ctaConversions={mockCtaConversions}
+      />
 
       {/* Ringkasan Tabel Jalur Masuk */}
       <div className="rounded-lg border border-border bg-card overflow-hidden">

@@ -154,3 +154,35 @@ model AdminUser {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// 10. Analytics & Traffic Event Tracking (Pencatat Aktivitas Pengunjung)
+model AnalyticsEvent {
+  id         Int      @id @default(autoincrement())
+  eventType  String   // PAGE_VIEW, CTA_CLICK_REGISTER, CTA_CLICK_WA, CALCULATOR_SIMULATION
+  targetPath String   // /, /program-studi/sarjana-farmasi, dsb
+  faculty    String?  // FK, FST, FH, FKHB
+  prodiSlug  String?
+  userAgent  String?  @db.Text
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+
+  @@index([eventType])
+  @@index([createdAt])
+  @@index([faculty])
+}
+
+// 11. Lead Pendaftaran & Konsultasi Calon Mahasiswa
+model AdmissionLead {
+  id            Int      @id @default(autoincrement())
+  fullName      String
+  phoneOrWa     String
+  schoolOrigin  String?
+  interestedIn  String   // Nama prodi atau fakultas
+  sourceChannel String   // WEBSITE_HERO_CTA, WA_CONSULTATION, CALCULATOR
+  status        String   @default("NEW") // NEW, CONTACTED, REGISTERED
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
