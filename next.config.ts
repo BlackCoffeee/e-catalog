@@ -5,9 +5,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // force reload environment variables
   output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
+  },
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
   },
 };
 

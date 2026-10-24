@@ -18,170 +18,172 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { TuitionCalculatorWidget } from '@/components/modules/tuition-calculator-widget';
+import { CatalogHomeAnimator } from '@/components/modules/catalog-home-animator';
 import { Badge } from '@/components/ui/badge';
 
 export default function CatalogHomePage() {
   return (
-    <div className="w-full flex flex-col">
-      {/* 1. Hero Section */}
-      <section className="relative w-full bg-[#0F2942] text-white py-16 md:py-24 border-b border-[#1E3A8A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#1A385C] border border-[#28507E] px-3 py-1.5 rounded text-xs font-semibold text-amber-400">
-              <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>Akreditasi Institusi Baik Sekali BAN-PT & LAM-PTKes</span>
+    <CatalogHomeAnimator>
+      <div className="w-full flex flex-col">
+        {/* 1. Hero Section */}
+        <section className="relative w-full bg-[#0F2942] text-white py-16 md:py-24 border-b border-[#1E3A8A]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="hero-badge inline-flex items-center gap-2 bg-[#1A385C] border border-[#28507E] px-3 py-1.5 rounded text-xs font-semibold text-amber-400">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
+                <span>Akreditasi Institusi Baik Sekali BAN-PT & LAM-PTKes</span>
+              </div>
+
+              <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                Kuliah Berkualitas, Masa Depan Lebih Pasti di Universitas Sari Mulia
+              </h1>
+
+              <p className="hero-desc text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
+                Pilihan terpercaya 15 Program Studi unggulan di bidang Kesehatan, Sains & Teknologi, Humaniora, serta Kedokteran Hewan & Biosains dengan skema pembiayaan per-trimester yang fleksibel dan terjangkau.
+              </p>
+
+              <div className="hero-actions flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href="https://siak.unism.ac.id/pmb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3 rounded-md text-sm shadow-md transition-all inline-flex items-center gap-2"
+                >
+                  <span>Daftar Online Sekarang</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <Link
+                  href="/biaya-pendidikan"
+                  className="bg-[#1A385C] hover:bg-[#224875] text-white font-semibold px-5 py-3 rounded-md text-sm border border-[#2C5584] transition-all"
+                >
+                  Hitung Biaya Trimester
+                </Link>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-              Kuliah Berkualitas, Masa Depan Lebih Pasti di Universitas Sari Mulia
-            </h1>
+            <div className="hero-image lg:col-span-5 relative">
+              <div className="relative rounded-lg overflow-hidden border-2 border-amber-500/40 shadow-2xl aspect-[4/3]">
+                <Image
+                  src="/assets/hero-campus.png"
+                  alt="Gedung Kampus Universitas Sari Mulia Banjarmasin"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              Pilihan terpercaya 15 Program Studi unggulan di bidang Kesehatan, Sains & Teknologi, Humaniora, serta Kedokteran Hewan & Biosains dengan skema pembiayaan per-trimester yang fleksibel dan terjangkau.
-            </p>
+        {/* 2. Quick Access Hub (6 Kartu Navigasi Utama) */}
+        <section className="quick-hub-section w-full py-12 bg-background border-b border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                Akses Cepat Informasi PMB
+              </h2>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                Temukan informasi esensial penerimaan mahasiswa baru tahun akademik 2027/2028.
+              </p>
+            </div>
 
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="https://siak.unism.ac.id/pmb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3 rounded-md text-sm shadow-md transition-all inline-flex items-center gap-2"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                href="/program-studi"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
               >
-                <span>Daftar Online Sekarang</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                <div className="w-10 h-10 rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 flex items-center justify-center mb-3">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  15 Program Studi Unggulan
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Eksplorasi profil jurusan, jenjang D3/S1/Profesi, dan prospek karier lulusan.
+                </p>
+              </Link>
+
               <Link
                 href="/biaya-pendidikan"
-                className="bg-[#1A385C] hover:bg-[#224875] text-white font-semibold px-5 py-3 rounded-md text-sm border border-[#2C5584] transition-all"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
               >
-                Hitung Biaya Trimester
+                <div className="w-10 h-10 rounded-md bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 flex items-center justify-center mb-3">
+                  <Calculator className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  Skema Biaya Per-Trimester
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Transparansi pembiayaan kuliah dibayarkan setiap 3 bulan sekali tanpa beban awal yang memberatkan.
+                </p>
+              </Link>
+
+              <Link
+                href="/jalur-seleksi"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mb-3">
+                  <Award className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  Jalur Seleksi & Beasiswa
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Pilihan jalur Reguler, Jalur Prestasi UNISM Cerdas, Beasiswa Yayasan, dan KIP Kuliah.
+                </p>
+              </Link>
+
+              <Link
+                href="/alur-pendaftaran"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-md bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 flex items-center justify-center mb-3">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  Alur & Panduan Pendaftaran
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  5 langkah mudah registrasi dari pembuatan akun formulir hingga perolehan Nomor Induk Mahasiswa.
+                </p>
+              </Link>
+
+              <Link
+                href="/akreditasi"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-md bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center mb-3">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  Status Akreditasi Resmi
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Seluruh prodi terakreditasi BAN-PT dan LAM-PTKes dengan jaminan legalitas ijazah nasional.
+                </p>
+              </Link>
+
+              <Link
+                href="/fasilitas-dan-kampus"
+                className="quick-hub-card p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-md bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 flex items-center justify-center mb-3">
+                  <Building2 className="w-5 h-5" />
+                </div>
+                <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
+                  Fasilitas & Kampus
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Gedung perkuliahan representatif, laboratorium medis terpadu, dan mini hospital standar RS.
+                </p>
               </Link>
             </div>
           </div>
+        </section>
 
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-lg overflow-hidden border-2 border-amber-500/40 shadow-2xl aspect-[4/3]">
-              <Image
-                src="/assets/hero-campus.png"
-                alt="Gedung Kampus Universitas Sari Mulia Banjarmasin"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 500px"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Quick Access Hub (6 Kartu Navigasi Utama) */}
-      <section className="w-full py-12 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Akses Cepat Informasi PMB
-            </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-              Temukan informasi esensial penerimaan mahasiswa baru tahun akademik 2027/2028.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Link
-              href="/program-studi"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 flex items-center justify-center mb-3">
-                <BookOpen className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                15 Program Studi Unggulan
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Eksplorasi profil jurusan, jenjang D3/S1/Profesi, dan prospek karier lulusan.
-              </p>
-            </Link>
-
-            <Link
-              href="/biaya-pendidikan"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 flex items-center justify-center mb-3">
-                <Calculator className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                Skema Biaya Per-Trimester
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Transparansi pembiayaan kuliah dibayarkan setiap 3 bulan sekali tanpa beban awal yang memberatkan.
-              </p>
-            </Link>
-
-            <Link
-              href="/jalur-seleksi"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center mb-3">
-                <Award className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                Jalur Seleksi & Beasiswa
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Pilihan jalur Reguler, Jalur Prestasi UNISM Cerdas, Beasiswa Yayasan, dan KIP Kuliah.
-              </p>
-            </Link>
-
-            <Link
-              href="/alur-pendaftaran"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 flex items-center justify-center mb-3">
-                <FileText className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                Alur & Panduan Pendaftaran
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                5 langkah mudah registrasi dari pembuatan akun formulir hingga perolehan Nomor Induk Mahasiswa.
-              </p>
-            </Link>
-
-            <Link
-              href="/akreditasi"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center mb-3">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                Status Akreditasi Resmi
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Seluruh prodi terakreditasi BAN-PT dan LAM-PTKes dengan jaminan legalitas ijazah nasional.
-              </p>
-            </Link>
-
-            <Link
-              href="/fasilitas-dan-kampus"
-              className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-md bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 flex items-center justify-center mb-3">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-sm text-foreground group-hover:text-primary transition-colors">
-                Fasilitas & Kampus
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Gedung perkuliahan representatif, laboratorium medis terpadu, dan mini hospital standar RS.
-              </p>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Showcase Program Studi Pilihan */}
-      <section className="w-full py-16 bg-muted/40 border-b border-border">
+        {/* 3. Showcase Program Studi Pilihan */}
+        <section className="prodi-section w-full py-16 bg-muted/40 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
@@ -203,12 +205,13 @@ export default function CatalogHomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Prodi 1 */}
-            <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
+            <div className="prodi-card rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
               <div className="relative aspect-[16/9] w-full bg-slate-200">
                 <Image
                   src="/assets/programs/sarjana-teknologi-informasi.png"
                   alt="Sarjana Teknologi Informasi"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -245,12 +248,13 @@ export default function CatalogHomePage() {
             </div>
 
             {/* Prodi 2 */}
-            <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
+            <div className="prodi-card rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
               <div className="relative aspect-[16/9] w-full bg-slate-200">
                 <Image
                   src="/assets/programs/sarjana-farmasi.png"
                   alt="Sarjana Farmasi"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -287,12 +291,13 @@ export default function CatalogHomePage() {
             </div>
 
             {/* Prodi 3 */}
-            <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
+            <div className="prodi-card rounded-lg border border-border bg-card overflow-hidden shadow-sm flex flex-col">
               <div className="relative aspect-[16/9] w-full bg-slate-200">
                 <Image
                   src="/assets/programs/sarjana-manajemen.png"
                   alt="Sarjana Manajemen"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -339,7 +344,7 @@ export default function CatalogHomePage() {
       </section>
 
       {/* 5. Alur Pendaftaran (5 Langkah Ringkas) */}
-      <section className="w-full py-16 bg-muted/30 border-b border-border">
+      <section className="steps-section w-full py-16 bg-muted/30 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
@@ -351,7 +356,7 @@ export default function CatalogHomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            <div className="p-4 rounded-lg border border-border bg-card space-y-2 text-center">
+            <div className="step-card p-4 rounded-lg border border-border bg-card space-y-2 text-center">
               <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-xs flex items-center justify-center mx-auto">
                 1
               </div>
@@ -361,7 +366,7 @@ export default function CatalogHomePage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg border border-border bg-card space-y-2 text-center">
+            <div className="step-card p-4 rounded-lg border border-border bg-card space-y-2 text-center">
               <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-xs flex items-center justify-center mx-auto">
                 2
               </div>
@@ -371,7 +376,7 @@ export default function CatalogHomePage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg border border-border bg-card space-y-2 text-center">
+            <div className="step-card p-4 rounded-lg border border-border bg-card space-y-2 text-center">
               <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-xs flex items-center justify-center mx-auto">
                 3
               </div>
@@ -381,7 +386,7 @@ export default function CatalogHomePage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg border border-border bg-card space-y-2 text-center">
+            <div className="step-card p-4 rounded-lg border border-border bg-card space-y-2 text-center">
               <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-xs flex items-center justify-center mx-auto">
                 4
               </div>
@@ -391,7 +396,7 @@ export default function CatalogHomePage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg border border-border bg-card space-y-2 text-center">
+            <div className="step-card p-4 rounded-lg border border-border bg-card space-y-2 text-center">
               <div className="w-8 h-8 rounded-full bg-amber-500 text-slate-950 font-bold text-xs flex items-center justify-center mx-auto">
                 5
               </div>
@@ -441,5 +446,6 @@ export default function CatalogHomePage() {
         </div>
       </section>
     </div>
+  </CatalogHomeAnimator>
   );
 }
